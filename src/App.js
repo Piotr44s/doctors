@@ -7,19 +7,31 @@ import {
 
 import About from "./pages/About";
 import Home from "./pages/Home";
-import News from "./pages/News";
+
+import Example from "./pages/Example";
+import Read from "./pages/Read";
+import Header from "./components/Header"
+import Edit from "./pages/Edit";
+import "./App.css"
+
 
 function App() {
 
   return (
 
-    <BrowserRouter>
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/read" element={<Read />} />
+          <Route path="/example" element={<Example />} />
+          <Route path="/edit" element={<Edit />} />
+
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 
 }

@@ -5,7 +5,10 @@ function Navigation() {
     <nav>
       <Link to="/">Home</Link> |
       <Link to="/about">About</Link> |
-      <Link to="/news">News</Link>
+      <Link to="/example">EXAMPLE</Link> |
+      <Link to="/edit">EDIT</Link> |
+      <Link to="/read">READ</Link> |
+
     </nav>
   );
 }
