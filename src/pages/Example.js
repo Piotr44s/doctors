@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import Navigation from "../components/Navigation";
 
 function Example() {
     return (

@@ -1,18 +1,17 @@
-import { useEffect } from 'react';
-import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Button } from "@mui/material";
 
 const selectDoctors = (state) => state.doctors;
 
-function Edit() {
+function Add() {
+
   const doctors = useSelector(selectDoctors);
   const [fullName, setFullName] = useState("");
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [spec, setSpec] = useState("");
   const [telephone, setTelephone] = useState("");
-  const { id } = useParams();
 
   const onFullNameChanged = (e) => setFullName(e.target.value);
   const onTitleChanged = (e) => setTitle(e.target.value);
@@ -22,21 +21,21 @@ function Edit() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const data = doctors.find((doctor) => doctor.id === parseInt(id));
-    if (!data) return;
-    const { fullName, title, address, spec, telephone } = data;
-    setFullName(fullName);
-    setTitle(title);
-    setAddress(address);
-    setSpec(spec);
-    setTelephone(telephone);
-  }, []);
+  const generateId = () => {
+    let id = 0;
+    doctors.forEach((doctor) => {
+      if (doctor.id > id) { id = doctor.id }
+    });
+    id = id + 1;
+    console.log('generated id: ', id);
+    return id;
+  }
+
 
   const onSaveDoctorClicked = () => {
     dispatch({
-      type: "doctors/edit",
-      payload: { fullName, title, address, spec, telephone, id: parseInt(id) }
+      type: "doctors/added",
+      payload: { fullName, title, address, spec, telephone, id: generateId() }
     });
     setFullName("");
     setTitle("");
@@ -106,12 +105,12 @@ function Edit() {
 
         <br />
         <br />
-        <button type="button" onClick={onSaveDoctorClicked}>
-          Save Doctor
-        </button>
+
+        <Button variant="contained" onClick={onSaveDoctorClicked}>Save Doctor</Button>
+
       </form>
     </div>
   );
 }
 
-export default Edit;
+export default Add;

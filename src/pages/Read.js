@@ -1,54 +1,33 @@
-import { Link } from "react-router-dom";
-import Navigation from "../components/Navigation";
+import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+import Button from '@mui/material/Button';
 
-import React from 'react'
-import { useSelector } from 'react-redux'
-
-const selectDoctors = (state) => state.doctors
-
-
+const selectDoctors = (state) => state.doctors;
 
 function Read() {
-  const doctors = useSelector(selectDoctors)
-
-
-
-
+  const doctors = useSelector(selectDoctors);
+  const navigate = useNavigate();
   const renderedListDoctors = doctors.map((item) => {
-    return (<h1>{item}</h1>)
-  })
+    return (
+      <div key={item.id}>
+        <h1>{item.fullName}</h1>
+        <p>
+          Title: {item.title} <br />
+          Address: {item.address}<br />
+          Spec: {item.spec}<br />
+          Tel: {item.telephone}
+        </p>
+        <Button variant="contained" onClick={() => navigate(`/edit/${item.id}`)}>
+          Link
+        </Button>
+      </div>
 
-  return (<ul >{renderedListDoctors}</ul>)
+    );
+  });
+
+  return <ul>{renderedListDoctors}</ul>;
 }
 
 
-
-
-
-
-// return (
-//   <div>
-//     <h1>{doctors}</h1>
-
-//   </div>
-// );
-
-
-export default Read
-
-
-
-
-
-
-// const TodoList = () => {
-
-
-//   const renderedListItems = todos.map((todo) => {
-//     return <TodoListItem key={todo.id} todo={todo} />
-//   })
-
-//   return <ul className="todo-list">{renderedListItems}</ul>
-// }
-
-// export default TodoList
+export default Read;
