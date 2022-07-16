@@ -7,15 +7,15 @@ const selectDoctors = (state) => state.doctors;
 function Add() {
 
   const doctors = useSelector(selectDoctors);
-  const [fullName, setFullName] = useState("");
-  const [title, setTitle] = useState("");
-  const [address, setAddress] = useState("");
-  const [spec, setSpec] = useState("");
-  const [telephone, setTelephone] = useState("");
+  const [email, setEmail] = useState("");
+  const [first_name, setFirst_name] = useState("");
+  const [last_name, setLast_name] = useState("");
+  const [specialization, setSpec] = useState("");
+  const [tel, setTelephone] = useState("");
 
-  const onFullNameChanged = (e) => setFullName(e.target.value);
-  const onTitleChanged = (e) => setTitle(e.target.value);
-  const onAddressChanged = (e) => setAddress(e.target.value);
+  const onEmailChanged = (e) => setEmail(e.target.value);
+  const onTitleChanged = (e) => setFirst_name(e.target.value);
+  const onAddressChanged = (e) => setLast_name(e.target.value);
   const onSpecChanged = (e) => setSpec(e.target.value);
   const onTelephoneChanged = (e) => setTelephone(e.target.value);
 
@@ -35,11 +35,11 @@ function Add() {
   const onSaveDoctorClicked = () => {
     dispatch({
       type: "doctors/added",
-      payload: { fullName, title, address, spec, telephone, id: generateId() }
+      payload: { email, first_name, last_name, specialization, tel, id: generateId() }
     });
-    setFullName("");
-    setTitle("");
-    setAddress("");
+    setEmail("");
+    setFirst_name("");
+    setLast_name("");
     setSpec("");
     setTelephone("");
   };
@@ -49,35 +49,35 @@ function Add() {
       <form>
         <br />
         <br />
-        <label>Imię i nazwisko: </label>
+        <label>Email: </label>
 
         <input
           type="text"
-          id="fullName"
-          name="fullName"
+          id="email"
+          name="email"
           placeholder=""
-          value={fullName}
-          onChange={onFullNameChanged}
+          value={email}
+          onChange={onEmailChanged}
         />
         <br />
-        <label>Tytuł naukowy: </label>
+        <label>Imię: </label>
         <input
           type="text"
-          id="title"
-          name="title"
+          id="first_name"
+          name="first_name"
           placeholder=""
-          value={title}
+          value={first_name}
           onChange={onTitleChanged}
         />
 
         <br />
-        <label>Adres: </label>
+        <label>Nazwisko: </label>
         <input
           type="text"
-          id="address"
-          name="address"
+          id="last_name"
+          name="last_name"
           placeholder=""
-          value={address}
+          value={last_name}
           onChange={onAddressChanged}
         />
 
@@ -85,10 +85,10 @@ function Add() {
         <label>Specjalizacja: </label>
         <input
           type="text"
-          id="spec"
-          name="spec"
+          id="specialization"
+          name="specialization"
           placeholder=""
-          value={spec}
+          value={specialization}
           onChange={onSpecChanged}
         />
 
@@ -96,10 +96,10 @@ function Add() {
         <label>Telefon: </label>
         <input
           type="text"
-          id="telephone"
-          name="telephone"
+          id="tel"
+          name="tel"
           placeholder=""
-          value={telephone}
+          value={tel}
           onChange={onTelephoneChanged}
         />
 

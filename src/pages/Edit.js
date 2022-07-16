@@ -2,21 +2,23 @@ import { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Button } from "@mui/material";
+import { TextField } from '@mui/material';
 
 const selectDoctors = (state) => state.doctors;
 
 function Edit() {
   const doctors = useSelector(selectDoctors);
-  const [fullName, setFullName] = useState("");
-  const [title, setTitle] = useState("");
-  const [address, setAddress] = useState("");
-  const [spec, setSpec] = useState("");
-  const [telephone, setTelephone] = useState("");
+  const [email, setEmail] = useState("");
+  const [first_name, setFirst_name] = useState("");
+  const [last_name, setLast_name] = useState("");
+  const [specialization, setSpec] = useState("");
+  const [tel, setTelephone] = useState("");
   const { id } = useParams();
 
-  const onFullNameChanged = (e) => setFullName(e.target.value);
-  const onTitleChanged = (e) => setTitle(e.target.value);
-  const onAddressChanged = (e) => setAddress(e.target.value);
+  const onEmailChanged = (e) => setEmail(e.target.value);
+  const onFirst_nameChanged = (e) => setFirst_name(e.target.value);
+  const onLast_nameChagned = (e) => setLast_name(e.target.value);
   const onSpecChanged = (e) => setSpec(e.target.value);
   const onTelephoneChanged = (e) => setTelephone(e.target.value);
 
@@ -25,22 +27,22 @@ function Edit() {
   useEffect(() => {
     const data = doctors.find((doctor) => doctor.id === parseInt(id));
     if (!data) return;
-    const { fullName, title, address, spec, telephone } = data;
-    setFullName(fullName);
-    setTitle(title);
-    setAddress(address);
-    setSpec(spec);
-    setTelephone(telephone);
+    const { email, first_name, last_name, specialization, tel } = data;
+    setEmail(email);
+    setFirst_name(first_name);
+    setLast_name(last_name);
+    setSpec(specialization);
+    setTelephone(tel);
   }, []);
 
   const onSaveDoctorClicked = () => {
     dispatch({
       type: "doctors/edit",
-      payload: { fullName, title, address, spec, telephone, id: parseInt(id) }
+      payload: { email, first_name, last_name, specialization, tel, id: parseInt(id) }
     });
-    setFullName("");
-    setTitle("");
-    setAddress("");
+    setEmail("");
+    setFirst_name("");
+    setLast_name("");
     setSpec("");
     setTelephone("");
   };
@@ -50,65 +52,48 @@ function Edit() {
       <form>
         <br />
         <br />
-        <label>Imię i nazwisko: </label>
-
-        <input
-          type="text"
-          id="fullName"
-          name="fullName"
-          placeholder=""
-          value={fullName}
-          onChange={onFullNameChanged}
-        />
-        <br />
-        <label>Tytuł naukowy: </label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder=""
-          value={title}
-          onChange={onTitleChanged}
+        <TextField label="Email" variant="outlined"
+          value={email}
+          onChange={onEmailChanged}
+          size="small"
         />
 
         <br />
-        <label>Adres: </label>
-        <input
-          type="text"
-          id="address"
-          name="address"
-          placeholder=""
-          value={address}
-          onChange={onAddressChanged}
+
+        <TextField label="Imię" variant="outlined"
+          value={first_name}
+          onChange={onFirst_nameChanged}
+          size="small"
         />
 
         <br />
-        <label>Specjalizacja: </label>
-        <input
-          type="text"
-          id="spec"
-          name="spec"
-          placeholder=""
-          value={spec}
+        <TextField label="Nazwisko" variant="outlined"
+          value={last_name}
+          onChange={onLast_nameChagned}
+          size="small"
+        />
+
+
+        <br />
+        <TextField label="Specjalizacja" variant="outlined"
+          value={specialization}
           onChange={onSpecChanged}
+          size="small"
         />
 
         <br />
-        <label>Telefon: </label>
-        <input
-          type="text"
-          id="telephone"
-          name="telephone"
-          placeholder=""
-          value={telephone}
+        <TextField label="Telefon" variant="outlined"
+          value={tel}
           onChange={onTelephoneChanged}
+          size="small"
         />
+
 
         <br />
         <br />
-        <button type="button" onClick={onSaveDoctorClicked}>
-          Save Doctor
-        </button>
+
+        <Button variant="contained" onClick={onSaveDoctorClicked}>Save Doctor</Button>
+
       </form>
     </div>
   );

@@ -11,12 +11,11 @@ function Read() {
   const renderedListDoctors = doctors.map((item) => {
     return (
       <div key={item.id}>
-        <h1>{item.fullName}</h1>
+        <h1>{item.first_name} {item.last_name}</h1>
         <p>
-          Title: {item.title} <br />
-          Address: {item.address}<br />
-          Spec: {item.spec}<br />
-          Tel: {item.telephone}
+          Email: {item.email} <br />
+          Specjalzacja: {item.specialization}<br />
+          Tel: {item.tel}
         </p>
         <Button variant="contained" onClick={() => navigate(`/edit/${item.id}`)}>
           Link

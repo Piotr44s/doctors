@@ -2,20 +2,20 @@
 
 const doctor1 = {
   id: 1,
-  fullName: "Mariusz Zarajczyk",
-  title: "doktor medycyny",
-  address: "Warszawa",
-  spec: "ortopeda",
-  telephone: "111 111 111"
+  email: "mzarajczyk@interia.pl",
+  first_name: "Mariusz",
+  last_name: "Zarajczyk",
+  specialization: "ortopeda",
+  tel: "111 111 111"
 }
 
 const doctor2 = {
   id: 2,
-  fullName: "Jarek Sawiniec",
-  title: "lekarz",
-  address: "Lublin",
-  spec: "onkolog",
-  telephone: "222 222 222"
+  email: "jsawiniec@interia.pl",
+  first_name: "Jarosław",
+  last_name: "Sawiniec",
+  specialization: "onkolog",
+  tel: "222 222 222"
 }
 
 
